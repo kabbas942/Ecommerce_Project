@@ -1,0 +1,44 @@
+{% extends 'ecommerce/base.html' %}
+
+{% block body %}
+
+<div class="album py-5 bg-light">
+<div class="container">
+  <h5>Category : <b>{{category}}</b></h5>
+  <hr>
+<div class="row">
+{% if productInformations %}
+{% for product in productInformations %}
+<div class="col-md-3">
+<div class="card mb-4 box-shadow" >
+  <a href="/ecommerce/productDescription/{{product.productId}}" class="text-dark text-decoration-none"><img class="card-img-top"  alt="Thumbnail [100%x225]" style="height: 200px; width: 100%; display: block;" src="/media/{{product.productImage}}" data-holder-rendered="true"></a>
+  <div class="card-body">
+    <p class="card-text">{{product.productName}}</p>
+    <p class="card-text"> $ {{product.productPrice}}.00</p>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        <form method="POST" action="/ecommerce/cart/">
+          {% csrf_token %}
+          <input type="hidden" name="cartId" value="{{product.productId}}">
+          <button type="submit" class="btn btn-sm btn-success" name="submit">Add to Cart</button>
+        </form>
+        
+      </div>
+      <small class="text-muted">{{product.productCategory}}</small>
+    </div>
+  </div>
+</div>
+</div>
+{% endfor %}
+{% else %}
+products not found
+{% endif %}
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+{% endblock body %}
