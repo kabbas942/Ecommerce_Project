@@ -66,11 +66,11 @@
                     <form class="d-flex me-2" method="get" action="{% url 'Search' %}">
                       {% csrf_token %}
                         <input class="form-control me-2" type="search" name="productSearch" placeholder="Search" aria-label="Search" required>
-                        <button class="btn btn-outline-dark" type="submit"><i class="fas fa-search"></i></button>
+                        <button class="btn" style="border: none;" type="submit"><i class="fas fa-search"></i></button>
                       </form> 
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-outline-dark" type="submit" onclick="window.location.href='/ecommerce/cartView'"><i class="fas fa-shopping-cart"></i>
+                    <button class="btn" style="border: none;" type="submit" onclick="window.location.href='/ecommerce/cartView'"><i class="fas fa-shopping-cart"></i>
                       
                       {% if request.session.quantity %}
                       {{request.session.quantity}}
@@ -84,7 +84,7 @@
                 </li>
               
                 <li class="nav-item px-2 dropdown">
-                  <button class="btn btn-outline-dark btn-mdbtn-md dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><span class="fa fa-user"></span> Abbas</button>
+                  <button class="btn btn-mdbtn-md dropdown-toggle" style="border: none;" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><span class="fa fa-user"></span> Abbas</button>
  
                     
                     <ul class="dropdown-menu" aria-labelledby="dropdown01"> 
