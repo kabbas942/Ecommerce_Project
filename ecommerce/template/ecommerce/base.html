@@ -16,6 +16,7 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'css/navbar-top-fixed.css' %}" rel="stylesheet">
     <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
      
     <style>
 
@@ -32,7 +33,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white" >
         <div class="container-fluid">
           <a class="navbar-brand" href="/"><icon class="fas fa-project-diagram"></icon> BuzzShop</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +42,7 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/ecommerce">Home</a>
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
@@ -66,11 +67,11 @@
                     <form class="d-flex me-2" method="get" action="{% url 'Search' %}">
                       {% csrf_token %}
                         <input class="form-control me-2" type="search" name="productSearch" placeholder="Search" aria-label="Search" required>
-                        <button class="btn" style="border: none;" type="submit"><i class="fas fa-search"></i></button>
+                        <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                       </form> 
                 </li>
                 <li class="nav-item">
-                    <button class="btn" style="border: none;" type="submit" onclick="window.location.href='/ecommerce/cartView'"><i class="fas fa-shopping-cart"></i>
+                    <button class="btn" style="" type="submit" onclick="window.location.href='/ecommerce/cartView'"><i class="fas fa-shopping-cart"></i>
                       
                       {% if request.session.quantity %}
                       {{request.session.quantity}}
