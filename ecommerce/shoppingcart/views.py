@@ -136,32 +136,3 @@ def deleteCartProduct(request):
                 del request.session['cart'][value]  
                 request.session.modified = True  
     return redirect("/ecommerce/cartView")
-#User Login
-def signIn(request):
-    if request.method=="POST":
-        userName = request.POST.get('userEmail')
-        userPassword = request.POST.get('userPassword')
-        authenticateUser = authenticate(username=userName, password=userPassword)
-        if authenticateUser is not None:
-            login(request,authenticateUser)
-            return redirect('/ecommerce')
-        else:
-            return render(request,'ecommerce/signIn.html')
-        
-    return render(request,'ecommerce/signIn.html')
-
-#User Logout
-def logOutProfile(request):
-    logout(request)
-    return redirect('/ecommerce/signIn')
-
-#User signup
-def signUp(request):
-    if request.method=="POST":
-        userName= request.POST.get("userName")
-        userEmail= request.POST.get("userEmail")
-        userPassword= request.POST.get("userPassword")
-        getUserModel=get_user_model()
-        createUser = getUserModel.objects.create_user(username=userName, password=userPassword, email=userEmail)
-        createUser.save()
-    return render(request,"ecommerce/signIn.html")

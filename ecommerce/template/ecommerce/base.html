@@ -85,12 +85,18 @@
                 </li>
               
                 <li class="nav-item px-2 dropdown">
-                  <button class="btn btn-mdbtn-md dropdown-toggle" style="border: none;" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><span class="fa fa-user"></span> Abbas</button>
+                {% if user.is_authenticated %}
+                <button class="btn btn-mdbtn-md dropdown-toggle" style="border: none;" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><span class="fa fa-user"></span> Abbas</button>
  
                     
-                    <ul class="dropdown-menu" aria-labelledby="dropdown01"> 
-                      <li><a class="dropdown-item" href="/ecommerce">Profile</a></li>  
-                    <li><a class="dropdown-item" href="/ecommerce">Logout</a></li></ul>
+                <ul class="dropdown-menu" aria-labelledby="dropdown01"> 
+                  <li><a class="dropdown-item" href="/ecommerce">Profile</a></li>  
+                <li><a class="dropdown-item" href="/ecommerce">Logout</a></li></ul> 
+                {% else %}
+                <button class="btn" style="" type="submit" onclick="window.location.href='/account/'"><i class="fa fa-sign-in"></i> Login</button>
+    
+                {% endif %}
+
 
 
 
