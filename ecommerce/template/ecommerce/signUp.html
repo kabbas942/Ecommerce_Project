@@ -5,12 +5,20 @@
 {% block body %}
        
 <main class="form-signin">
+  {% if messages %}
+       
+  {% for message in messages %}
+  <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+  {% endfor %}
+
+    
+{% endif %}
     <form method="post" action="{% url 'signup' %}">
         {% csrf_token %}
         <h1 class="h3 mb-3 fw-normal"></h1><icon class="fas fa-project-diagram"></icon> BuzzShop</h1>
       <h1 class="h3 mb-3 fw-normal">Create Account </h1>  
       <div class="form-floating py-1">
-        <input type="name" name="userName" class="form-control" placeholder="Name">
+        <input type="name" name="name" class="form-control" placeholder="Name">
         <label for="floatingInput">Name</label>
       </div>
       <div class="form-floating py-1">
