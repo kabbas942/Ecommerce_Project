@@ -3,29 +3,39 @@
 
 
 {% block body %}
-       
+
 <main class="form-signin">
+  
+  {% if messages %}
+       {% for message in messages %}
+  <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+  {% endfor %}
+{% endif %}
     <form method="post" action="{% url 'signin' %}">
         {% csrf_token %}
         <h1 class="h3 mb-3 fw-normal"></h1><icon class="fas fa-project-diagram"></icon> BuzzShop</h1>
       <h1 class="h3 mb-3 fw-normal">Login To BuzzShop</h1>
   
       <div class="form-floating py-1">
-        <input type="text" name="userEmail" class="form-control" placeholder="admin">
+        <input type="text" name="userEmail" class="form-control" placeholder="admin" required>
         <label for="floatingInput">Username</label>
       </div>
       <div class="form-floating py-1">
-        <input type="password" name="userPassword" class="form-control" placeholder="Password">
+        <input type="password" name="userPassword" class="form-control" placeholder="Password" required>
         <label for="floatingPassword">Password</label>
       </div>
   
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
+      <div class="text-center mb-3">
+        <label >
+          <a href="#">Forgot Password</a>
+          
         </label>
       </div>
+      
       <button class="w-100 btn btn-lg btn-dark" type="submit">Sign in</button>
       </form>
+      <br>
+      <label class="right">New member?<a href="{% url 'signup'%}"> Register Here</a> </label>
   </main>
   <div class="py-5"></div>
 {% endblock body %} 
