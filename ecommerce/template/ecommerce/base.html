@@ -84,27 +84,6 @@
                       </button>
                 </li>
               
-                <li class="nav-item px-2 dropdown">
-                {% if user.is_authenticated %}
-                <button class="btn btn-mdbtn-md dropdown-toggle" style="border: none;" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><span class="fa fa-user"></span>
-                  {% if user.first_name %}
-                  {{user.first_name}}
-                  {% else %}
-                  {{user}}
-                  {% endif %}
-                  
-                </button>
- 
-                    
-                <ul class="dropdown-menu" aria-labelledby="dropdown01"> 
-                  <li><a class="dropdown-item" href="/ecommerce">Profile</a></li>  
-                <li><a class="dropdown-item" href="/account/logout">Logout</a></li></ul> 
-                {% else %}
-                <button class="btn" style="" type="submit" onclick="window.location.href='/account/'"><i class="fa fa-sign-in"></i> Login</button>
-    
-                {% endif %}
-
-
 
 
 

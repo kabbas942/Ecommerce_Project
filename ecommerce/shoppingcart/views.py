@@ -2,11 +2,10 @@ from django.shortcuts import render,HttpResponse,redirect
 from shoppingcart.models import Product,Category,Order,OrderDetail
 from django.contrib import sessions
 from django.db.models import Count
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login,logout,get_user_model
 
+
+#main page
 def index(request):
-    #request.session.flush()
     allProductList= Product.objects.all()
     categoryList= Category.objects.all()
     productPara={}
@@ -17,19 +16,25 @@ def index(request):
     productParameter={'products':productPara}
     return render(request,"ecommerce/index.html",productParameter)
 
+
 def productDescription(request,productDescriptionId):
     productInfo = Product.objects.get(productId = productDescriptionId)
     productInfo = {'productInformation':productInfo}
     return render(request,"ecommerce/productDescription.html",productInfo)
 
+
 def contact(request):
     return render(request,"ecommerce/contact.html")
+
+
 #Categories the  Product
 def productCategories(request,categoryId):
     productInfo = Category.objects.get(categoryName = categoryId)
     productCategoryInfo = Product.objects.filter(productCategory= productInfo.categoryId)
     productInformations = {'productInformations':productCategoryInfo,'category':categoryId}
     return render(request,"ecommerce/productCategories.html",productInformations)
+
+
 #Searching Product
 def search(request):
     if request.method == 'GET':
@@ -42,37 +47,29 @@ def search(request):
         else:
             productList = Product.objects.filter(productCategory__categoryName__icontains=query)
             productParameter={'products':productList,'search': query}
-
-                
-              
-        
         return render(request,"ecommerce/search.html",productParameter)
     return redirect("/ecommerce")
 
+
 def shippingAddress(request):
-    if request.user.is_anonymous:
-        return redirect('/ecommerce/signIn')   
-    else:
         if request.method == 'POST':
-            userId = User.objects.get(id=request.user.id)
+            customerName = request.POST.get("shippingAddress")
             shippingAddress=request.POST.get("shippingAddress")
             mobileNumber=request.POST.get("mobileNumber")
             countryName=request.POST.get("countryName")
             stateName=request.POST.get("stateName")
             zipCode=request.POST.get("zipCode")
-            OrderNow= Order(customerId=userId,orderAddress=shippingAddress,orderCountry=countryName,orderState=stateName,orderZipCode=zipCode,orderMobileNumber=mobileNumber,orderPrice=33)
+            OrderNow= Order(customerName=customerName,orderAddress=shippingAddress,orderCountry=countryName,orderState=stateName,orderZipCode=zipCode,orderMobileNumber=mobileNumber,orderPrice=33)
             OrderNow.save()
             for productDetailId,Qty in request.session['cart'].items(): 
                 product= Product.objects.get(productId=productDetailId)          
                 orderId = Order.objects.get(orderId = OrderNow.pk) 
                 OrderDetailNow = OrderDetail(productId=product, orderId=orderId, orderProductQuantity=Qty,productPrice=product.productPrice)
                 OrderDetailNow.save()                
-            request.session.flush()
-                
-                
-
-            
+            request.session.flush()            
         return render(request,"ecommerce/shippingAddress.html")
+
+
 #Viewing Cart
 def cartView(request):
     if request.session.get('cart'):        
@@ -89,6 +86,8 @@ def cartView(request):
         return render(request,'ecommerce/cart.html',cartProducts)
     else:
         return render(request,'ecommerce/cart.html')
+
+
 #Adding Product in Cart (Session) 
 def cart(request):
     if request.method=="POST":
@@ -106,7 +105,10 @@ def cart(request):
         request.session['cart']=cartValue
         totalCartQuantity = sum(request.session['cart'].values())    
         request.session['quantity']=totalCartQuantity
+        print(totalCartQuantity)
         return redirect(request.META.get('HTTP_REFERER')) #redirect a user back to the page they came from
+
+
 #Update Product Quantity in Cart (Session)    
 def cartUpdateQty(request):
     if request.method=="POST":
@@ -125,6 +127,8 @@ def cartUpdateQty(request):
         totalCartQuantity = sum(request.session['cart'].values())
         request.session['quantity']=totalCartQuantity      
     return redirect("/ecommerce/cartView")
+
+
 #Delete Product from Cart (Session)
 def deleteCartProduct(request):
     if request.method=="POST":
