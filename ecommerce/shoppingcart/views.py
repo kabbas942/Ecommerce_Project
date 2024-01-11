@@ -2,6 +2,7 @@ from django.shortcuts import render,HttpResponse,redirect
 from shoppingcart.models import Product,Category,Order,OrderDetail
 from django.contrib import sessions
 from django.db.models import Count
+from datetime import datetime
 
 
 #main page
@@ -51,23 +52,21 @@ def search(request):
     return redirect("/ecommerce")
 
 
-def shippingAddress(request):
-        if request.method == 'POST':
-            customerName = request.POST.get("shippingAddress")
-            shippingAddress=request.POST.get("shippingAddress")
-            mobileNumber=request.POST.get("mobileNumber")
-            countryName=request.POST.get("countryName")
-            stateName=request.POST.get("stateName")
-            zipCode=request.POST.get("zipCode")
-            OrderNow= Order(customerName=customerName,orderAddress=shippingAddress,orderCountry=countryName,orderState=stateName,orderZipCode=zipCode,orderMobileNumber=mobileNumber,orderPrice=33)
-            OrderNow.save()
-            for productDetailId,Qty in request.session['cart'].items(): 
-                product= Product.objects.get(productId=productDetailId)          
-                orderId = Order.objects.get(orderId = OrderNow.pk) 
-                OrderDetailNow = OrderDetail(productId=product, orderId=orderId, orderProductQuantity=Qty,productPrice=product.productPrice)
-                OrderDetailNow.save()                
-            request.session.flush()            
-        return render(request,"ecommerce/shippingAddress.html")
+def order(request):
+    if request.method == 'POST':
+        customerName = request.POST.get("customerName")
+        mobileNumber=request.POST.get("mobileNumber")
+        zipCode=request.POST.get("zipCode")
+        shippingAddress=request.POST.get("shippingAddress")
+        OrderNow= Order(customerName=customerName,Address=shippingAddress,ZipCode=zipCode,MobileNumber=mobileNumber,totalPrice=request.session['cartProductPrice'],date=datetime.now())
+        OrderNow.save()
+        for productDetailId,Qty in request.session['cart'].items(): 
+            product= Product.objects.get(productId=productDetailId)          
+            orderId = Order.objects.get(orderId = OrderNow.pk) 
+            OrderDetailNow = OrderDetail(productId=product, orderId=orderId, orderProductQuantity=Qty,productPrice=product.productPrice)
+            OrderDetailNow.save()                
+        request.session.flush()            
+    return render(request,"ecommerce/order.html")
 
 
 #Viewing Cart
@@ -82,7 +81,10 @@ def cartView(request):
             productPrice = cartDictionary.get(y) * Product.objects.get(productId = y).productPrice
             cartPriceDictionary[y]=productPrice
             cartProductsPrice.append(productPrice)
-        cartProducts = {'cartProducts':Product.objects.filter(productId__in = cartInt), 'cartDictionary':cartDictionary,'total':sum(cartProductsPrice),'productPriceList':cartPriceDictionary}
+            
+        cartProductsPrice = sum(cartProductsPrice)
+        request.session['cartProductPrice'] = cartProductsPrice
+        cartProducts = {'cartProducts':Product.objects.filter(productId__in = cartInt), 'cartDictionary':cartDictionary,'total':cartProductsPrice,'productPriceList':cartPriceDictionary}
         return render(request,'ecommerce/cart.html',cartProducts)
     else:
         return render(request,'ecommerce/cart.html')
