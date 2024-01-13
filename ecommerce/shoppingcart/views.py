@@ -1,8 +1,9 @@
 from django.shortcuts import render,HttpResponse,redirect
-from shoppingcart.models import Product,Category,Order,OrderDetail
+from shoppingcart.models import Product,Category,Order,OrderDetail,Contact
 from django.contrib import sessions
 from django.db.models import Count
 from datetime import datetime
+from django.contrib import messages
 
 
 #main page
@@ -25,6 +26,18 @@ def productDescription(request,productDescriptionId):
 
 
 def contact(request):
+    if request.method=="POST":
+        name=request.POST.get('name')
+        subject=request.POST.get('subject')
+        email=request.POST.get('email')
+        message=request.POST.get('message')
+        contactUs = Contact(Name=name,Subject=subject,Email=email,Message=message)
+        contactUs.save()
+        if contactUs.contactId is not None:
+            print("jdojdfj")
+            messages.success(request, "Message Sent.")
+        else:
+            messages.warning(request, "Message not Sent")
     return render(request,"ecommerce/contact.html")
 
 

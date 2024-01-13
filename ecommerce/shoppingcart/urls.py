@@ -5,7 +5,7 @@ from shoppingcart import views
 urlpatterns = [
     path('',views.index,name="Home"),
     path('ecommerce/categories/<str:categoryId>',views.productCategories,name="productCategories"),
-    path('ecommerce/contact/',views.contact,name="Contact"),
+    path('ecommerce/contact/',views.contact,name="contact"),
     path('ecommerce/search/',views.search,name="Search"),    
     path('ecommerce/cart/',views.cart,name="Cart"),
     path('ecommerce/cartDelete/',views.deleteCartProduct,name="deleteCartProduct"),

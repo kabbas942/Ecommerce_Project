@@ -43,3 +43,13 @@ class OrderDetail(models.Model):
     def __str__(self):
         return str(self.orderId)
     
+
+class Contact(models.Model):
+    contactId = models.AutoField(primary_key=True)
+    Name = models.CharField(max_length=122)
+    Email = models.CharField(max_length=122)
+    Subject = models.CharField(max_length=122,null=True,blank=True)
+    Message = models.TextField()    
+    def __str__(self):
+        return str(self.Name)
+    

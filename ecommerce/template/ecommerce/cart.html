@@ -10,7 +10,8 @@
   </div>    
   <div class="row">
     <div class="col-md-12 col-lg-12 order-md-last">
-      <h4 class="d-flex justify-content-between align-items-center mb-3"></h4>
+
+      {% if cartProducts %} 
       <table class="table">
         <tr>
           <th>Product Image</th>
@@ -22,7 +23,7 @@
           <th> </th>
         </tr>
 
-        {% if cartProducts %}  <!--Cart Product Dictionary-->
+ <!--Cart Product Dictionary-->
         {% for product in cartProducts %} 
         <tr>
           <td tyle="border-right-width: 100%;"><a href="/ecommerce/productDescription/{{product.productId}}"><img style="width:30%;" src="/media/{{product.productImage}}"></a></td>
@@ -50,14 +51,12 @@
 <tr><td></td><td></td><td></td><td><strong>Total (USD)</strong></td><td>
   <strong>${{total}}</strong></td><td></td></tr>
 </form>
-{% else %}
-<tr>  
-  <td><h4 class="my-0 text-center">Cart is Empty</h4></td><td></td><td></td><td></td><td></td><td></td>
-</tr>
-{% endif %}
+
 
       </table>
-  
+      {% else %}
+      <h4 class="text-center bg-light py-3"><span class="fa fa-cart-plus"></span> Wait for Products</h4>
+      {% endif %}
     </div>
 
   </div>
