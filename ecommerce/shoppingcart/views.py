@@ -106,19 +106,22 @@ def cartView(request):
 #Adding Product in Cart (Session) 
 def cart(request):
     if request.method=="POST":
-        cartId = int(request.POST.get("cartId"))        
+        cartId = request.POST.get("cartId")        
         cartValue = request.session.get('cart')
         if cartValue:
             quantity = cartValue.get(cartId)
+            print(quantity)
             if quantity:
                 cartValue[cartId] = quantity + 1
             else:
                 cartValue[cartId] = 1
+                print(quantity)
         else:
             cartValue = {} 
-            cartValue[cartId] = 1  
+            cartValue[cartId] = 1 
         request.session['cart']=cartValue
         totalCartQuantity = sum(request.session['cart'].values())    
+        print(cartValue)
         request.session['quantity']=totalCartQuantity
         print(totalCartQuantity)
         return redirect(request.META.get('HTTP_REFERER')) #redirect a user back to the page they came from

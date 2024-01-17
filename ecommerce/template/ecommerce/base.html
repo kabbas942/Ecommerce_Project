@@ -48,11 +48,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown01">
                   
-                  {% for category in productCategories %}         
-                
-
-                      
-                   
+                  {% for category in productCategories %}          
                   <li><a class="dropdown-item" href="/ecommerce/categories/{{category}}">{{category}}</a></li>
                   {% endfor %}
                 </ul>
