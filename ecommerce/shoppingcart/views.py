@@ -8,6 +8,7 @@ from django.contrib import messages
 
 #main page
 def index(request):
+    #request.session.flush()
     allProductList= Product.objects.all()
     categoryList= Category.objects.all()
     productPara={}
