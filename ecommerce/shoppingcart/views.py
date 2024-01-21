@@ -78,8 +78,10 @@ def order(request):
             product= Product.objects.get(productId=productDetailId)          
             orderId = Order.objects.get(orderId = OrderNow.pk) 
             OrderDetailNow = OrderDetail(productId=product, orderId=orderId, orderProductQuantity=Qty,productPrice=product.productPrice)
-            OrderDetailNow.save()                
-        request.session.flush()            
+            OrderDetailNow.save()   
+            messages.success(request,"Order Place Successfully")                   
+        request.session.flush()  
+        return redirect("/")          
     return render(request,"ecommerce/order.html")
 
 

@@ -12,5 +12,5 @@ urlpatterns = [
     path('ecommerce/order/',views.order,name="order"),
     path('ecommerce/cartView/',views.cartView,name="cartView"),
     path('ecommerce/productDescription/<int:productDescriptionId>/',views.productDescription,name="productDescription"),
-    path('ecommerce/cartUpdate/',views.cartUpdateQty,name="cartUpdateQty"),
+    path('ecommerce/cartUpdate/',views.cartUpdateQty,name="cartUpdateQty")
 ]

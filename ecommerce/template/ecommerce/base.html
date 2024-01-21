@@ -26,6 +26,12 @@
   padding: 15px;
   margin: auto;
 } </style>
+{% if messages %}
+    {% for message in messages %}
+<script>window.alert('{{ message }}')<script>
+    {% endfor %}
+</ul>
+{% endif %}
   </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white" >
