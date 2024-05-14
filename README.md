@@ -7,3 +7,21 @@
     <li><b>Shopping Cart:</b> Users can add products to the cart, update quantities, and remove items.</li>
    <li><b>Checkout:</b> Users can proceed to checkout, enter shipping information, and complete orders securely.</li>
 </ul>
+<h2>Technologies Used</h2>
+<ul>
+    <li>Python</li>
+    <li>Django</li>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+    <li>Bootstrap</li>
+
+</ul>
+Technologies Used
+
+    Python
+    Django
+    HTML
+    CSS
+    JavaScript
+    Bootstrap
