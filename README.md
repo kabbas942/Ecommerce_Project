@@ -20,23 +20,25 @@
 <h2>Installation</h2>
 <ol>
 <li>Clone the repository:</li>
-git clone https://github.com/your-username/ecommerce-django.git
+<code>git clone https://github.com/your-username/ecommerce-django.git</code>
+<br>
 
 <li>Navigate to the project directory:</li>
-cd ecommerce-django
-
+<code>cd ecommerce-django</code>
+<br>
 <li>Install dependencies:</li>
-pip install -r requirements.txt
-
+<code>pip install -r requirements.txt</code>
+<br>
 <li>Run migrations:</li>
-python manage.py migrate
-
+<code>python manage.py migrate</code>
+<br>
 <li>Create a superuser account:</li>
-python manage.py createsuperuser
-
+<code>python manage.py createsuperuser</code>
+<br>
 <li>start the development server:</li>
-python manage.py runserver
-
+<code>python manage.py runserver</code>
+<br>
 <li>Access the website at `http://localhost:8000`.</li>
+<br>
 </ol>
 
