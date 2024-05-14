@@ -17,11 +17,26 @@
     <li>Bootstrap</li>
 
 </ul>
-Technologies Used
+<h2>Installation</h2>
+<ol>
+<li>Clone the repository:</li>
+git clone https://github.com/your-username/ecommerce-django.git
 
-    Python
-    Django
-    HTML
-    CSS
-    JavaScript
-    Bootstrap
+<li>Navigate to the project directory:</li>
+cd ecommerce-django
+
+<li>Install dependencies:</li>
+pip install -r requirements.txt
+
+<li>Run migrations:</li>
+python manage.py migrate
+
+<li>Create a superuser account:</li>
+python manage.py createsuperuser
+
+<li>start the development server:</li>
+python manage.py runserver
+
+<li>Access the website at `http://localhost:8000`.</li>
+</ol>
+
