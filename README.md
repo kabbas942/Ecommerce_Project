@@ -40,7 +40,7 @@
 <li>start the development server:</li>
 <code>python manage.py runserver</code>
 <br>
-<li>Access the website at `http://localhost:8000`.</li>
+<li>Access the website at <code>`http://localhost:8000`</code>.</li>
 <br>
 </ol>
 
