@@ -13,7 +13,4 @@ urlpatterns = [
     path('ecommerce/cartView/',views.cartView,name="cartView"),
     path('ecommerce/productDescription/<int:productDescriptionId>/',views.productDescription,name="productDescription"),
     path('ecommerce/cartUpdate/',views.cartUpdateQty,name="cartUpdateQty"),
-    path('ecommerce/signUp/',views.signUp,name="signUp"),
-    path('ecommerce/signIn/',views.signIn,name="signIn"),
-    path('ecommerce/logOut/',views.logOutProfile,name="signOut"),
 ]

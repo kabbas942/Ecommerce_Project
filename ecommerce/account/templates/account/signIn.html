@@ -1,0 +1,31 @@
+{% extends "../base.html" %}
+
+
+
+{% block body %}
+       
+<main class="form-signin">
+    <form method="post" action="{% url 'signIn' %}">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal"></h1><icon class="fas fa-project-diagram"></icon> BuzzShop</h1>
+      <h1 class="h3 mb-3 fw-normal">Login To BuzzShop</h1>
+  
+      <div class="form-floating py-1">
+        <input type="text" name="userEmail" class="form-control" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating py-1">
+        <input type="password" name="userPassword" class="form-control" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+      </div>
+  
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-dark" type="submit">Sign in</button>
+      </form>
+  </main>
+  <div class="py-5"></div>
+{% endblock body %} 

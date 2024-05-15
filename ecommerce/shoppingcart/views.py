@@ -4,7 +4,7 @@ from django.contrib import sessions
 from django.db.models import Count
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout,get_user_model
-
+from django.contrib.auth.decorators import login_required
 def index(request):
     #request.session.flush()
     allProductList= Product.objects.all()
@@ -20,7 +20,7 @@ def index(request):
 def productDescription(request,productDescriptionId):
     productInfo = Product.objects.get(productId = productDescriptionId)
     productInfo = {'productInformation':productInfo}
-    return render(request,"ecommerce/productDescription.html",productInfo)
+    return render(request,"ecommerace/productDescription.html",productInfo)
 
 def contact(request):
     return render(request,"ecommerce/contact.html")
@@ -49,31 +49,7 @@ def search(request):
         return render(request,"ecommerce/search.html",productParameter)
     return redirect("/ecommerce")
 
-def shippingAddress(request):
-    if request.user.is_anonymous:
-        return redirect('/ecommerce/signIn')   
-    else:
-        if request.method == 'POST':
-            userId = User.objects.get(id=request.user.id)
-            shippingAddress=request.POST.get("shippingAddress")
-            mobileNumber=request.POST.get("mobileNumber")
-            countryName=request.POST.get("countryName")
-            stateName=request.POST.get("stateName")
-            zipCode=request.POST.get("zipCode")
-            OrderNow= Order(customerId=userId,orderAddress=shippingAddress,orderCountry=countryName,orderState=stateName,orderZipCode=zipCode,orderMobileNumber=mobileNumber,orderPrice=33)
-            OrderNow.save()
-            for productDetailId,Qty in request.session['cart'].items(): 
-                product= Product.objects.get(productId=productDetailId)          
-                orderId = Order.objects.get(orderId = OrderNow.pk) 
-                OrderDetailNow = OrderDetail(productId=product, orderId=orderId, orderProductQuantity=Qty,productPrice=product.productPrice)
-                OrderDetailNow.save()                
-            request.session.flush()
-                
-                
 
-            
-        return render(request,"ecommerce/shippingAddress.html")
-#Viewing Cart
 def cartView(request):
     if request.session.get('cart'):        
         cartString = request.session['cart'].keys()
@@ -136,32 +112,3 @@ def deleteCartProduct(request):
                 del request.session['cart'][value]  
                 request.session.modified = True  
     return redirect("/ecommerce/cartView")
-#User Login
-def signIn(request):
-    if request.method=="POST":
-        userName = request.POST.get('userEmail')
-        userPassword = request.POST.get('userPassword')
-        authenticateUser = authenticate(username=userName, password=userPassword)
-        if authenticateUser is not None:
-            login(request,authenticateUser)
-            return redirect('/ecommerce')
-        else:
-            return render(request,'ecommerce/signIn.html')
-        
-    return render(request,'ecommerce/signIn.html')
-
-#User Logout
-def logOutProfile(request):
-    logout(request)
-    return redirect('/ecommerce/signIn')
-
-#User signup
-def signUp(request):
-    if request.method=="POST":
-        userName= request.POST.get("userName")
-        userEmail= request.POST.get("userEmail")
-        userPassword= request.POST.get("userPassword")
-        getUserModel=get_user_model()
-        createUser = getUserModel.objects.create_user(username=userName, password=userPassword, email=userEmail)
-        createUser.save()
-    return render(request,"ecommerce/signIn.html")
