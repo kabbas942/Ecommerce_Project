@@ -2,17 +2,16 @@ from django.shortcuts import render,HttpResponse,redirect
 from shoppingcart.models import Product,Category,Order,OrderDetail,Contact
 from django.contrib import sessions
 from django.db.models import Count
-<<<<<<< HEAD
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout,get_user_model
 from django.contrib.auth.decorators import login_required
-=======
+
 from datetime import datetime
 from django.contrib import messages
 
 
 #main page
->>>>>>> d8decdf13dc1e465cf0664b25a0e16a966d4c1a4
+
 def index(request):
     #request.session.flush()
     allProductList= Product.objects.all()
@@ -71,9 +70,6 @@ def search(request):
         return render(request,"ecommerce/search.html",productParameter)
     return redirect("/ecommerce")
 
-
-<<<<<<< HEAD
-=======
 def order(request):
     if request.method == 'POST':
         customerName = request.POST.get("customerName")
@@ -94,7 +90,6 @@ def order(request):
 
 
 #Viewing Cart
->>>>>>> d8decdf13dc1e465cf0664b25a0e16a966d4c1a4
 def cartView(request):
     if request.session.get('cart'):        
         cartString = request.session['cart'].keys()
@@ -169,8 +164,7 @@ def deleteCartProduct(request):
                     request.session['quantity']=request.session['quantity']-request.session['cart'][str(value)]
                 del request.session['cart'][value]  
                 request.session.modified = True  
-<<<<<<< HEAD
+
     return redirect("/ecommerce/cartView")
-=======
     return redirect("/ecommerce/cartView")
->>>>>>> d8decdf13dc1e465cf0664b25a0e16a966d4c1a4
+
