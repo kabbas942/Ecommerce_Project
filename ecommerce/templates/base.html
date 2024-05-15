@@ -17,8 +17,7 @@
     <link href="{% static 'css/navbar-top-fixed.css' %}" rel="stylesheet">
     <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link href="{% static 'css/account.css' %}" rel="stylesheet">
-     {% block style %}{% endblock style %}
+     
     <style>
 
 .form-signin {
@@ -84,36 +83,23 @@
                       
                       </button>
                 </li>
-              {% if is_authenticated %}
+              
+                <li class="nav-item px-2 dropdown">
+                  <button class="btn btn-mdbtn-md dropdown-toggle" style="border: none;" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><span class="fa fa-user"></span> Abbas</button>
+ 
+                    
+                    <ul class="dropdown-menu" aria-labelledby="dropdown01"> 
+                      <li><a class="dropdown-item" href="/ecommerce">Profile</a></li>  
+                    <li><a class="dropdown-item" href="/ecommerce">Logout</a></li></ul>
 
 
 
-
-              <li class="nav-item px-2 dropdown">
-                  
-                <button class="btn btn-mdbtn-md dropdown-toggle" style="border: none;" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><span class="fa fa-user"></span> {{request.user.first_name}}</button>
-
-                  
-                  <ul class="dropdown-menu" aria-labelledby="dropdown01"> 
-                    <li><a class="dropdown-item" href="/ecommerce">Profile</a></li>  
-                  <li><a class="dropdown-item" href="/ecommerce">Logout</a></li>
-                </ul>
-
-
-
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="btn btn-outline-dark" aria-current="page" href="{% url "signIn" %}">Signin</a>
-              </li>  
-              {% endif %}
 
 
                   
 
 
-         
-                </div>
+          </div>
         </div>
       </nav>
   
@@ -138,8 +124,7 @@
 <script type="text/javascript">
 {% block js %}{% endblock js %}
 </script>
-
-<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/all.min.js' %}"></script>
 
   </body>

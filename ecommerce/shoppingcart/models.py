@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -26,16 +25,14 @@ class Product(models.Model):
     
 class Order(models.Model):
     orderId = models.AutoField(primary_key=True)
-    customerId = models.ForeignKey(User,on_delete=models.CASCADE,related_name="order",null=True,blank=True)
-    orderAddress = models.CharField(max_length=500)
-    orderCountry= models.CharField(max_length=52)
-    orderState= models.CharField(max_length=52)
-    orderZipCode= models.CharField(max_length=52)
-    orderMobileNumber = models.IntegerField(default="")
-    orderPrice = models.IntegerField(default=0)
-    
+    customerName = models.CharField(max_length=100)
+    Address = models.CharField(max_length=500)
+    ZipCode= models.CharField(max_length=52)
+    MobileNumber = models.IntegerField(default="")
+    totalPrice = models.IntegerField(default=0)
+    date=models.DateField()
     def __str__(self):
-        return str(self.customerId)
+        return str(self.orderId)
     
 class OrderDetail(models.Model):
     orderDetailId = models.AutoField(primary_key=True)
@@ -45,4 +42,14 @@ class OrderDetail(models.Model):
     productPrice = models.IntegerField(default=0)
     def __str__(self):
         return str(self.orderId)
+    
+
+class Contact(models.Model):
+    contactId = models.AutoField(primary_key=True)
+    Name = models.CharField(max_length=122)
+    Email = models.CharField(max_length=122)
+    Subject = models.CharField(max_length=122,null=True,blank=True)
+    Message = models.TextField()    
+    def __str__(self):
+        return str(self.Name)
     
