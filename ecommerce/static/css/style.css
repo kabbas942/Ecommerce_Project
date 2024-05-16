@@ -1,3 +1,8 @@
+a{
+    text-decoration: none;
+}
+
+
 .navbar .btn{
     outline: none;
     box-shadow:none;
@@ -23,4 +28,3 @@ input{
     border-width: 1px;
     outline: none;
 }
-
