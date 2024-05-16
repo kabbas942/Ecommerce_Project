@@ -3,7 +3,7 @@ from shoppingcart.models import Product,Category,Order,OrderDetail,Contact
 from django.contrib import sessions
 from django.db.models import Count
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login,logout,get_user_model
+from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
 from datetime import datetime

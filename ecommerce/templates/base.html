@@ -85,13 +85,17 @@
                 </li>
               
                 <li class="nav-item px-2 dropdown">
-                  <button class="btn btn-mdbtn-md dropdown-toggle" style="border: none;" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><span class="fa fa-user"></span> Abbas</button>
- 
-                    
-                    <ul class="dropdown-menu" aria-labelledby="dropdown01"> 
-                      <li><a class="dropdown-item" href="/ecommerce">Profile</a></li>  
-                    <li><a class="dropdown-item" href="/ecommerce">Logout</a></li></ul>
+                      {% if request.user.is_authenticated %}
+                      <button class="btn btn-mdbtn-md dropdown-toggle" style="border: none;" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false"><span class="fa fa-user"></span> {{request.user.first_name}}</button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdown01"> 
+                        <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>  
+                      <li><a class="dropdown-item" href="{% url 'signout' %}">Logout</a></li></ul>
+                      {% else %}
+                        <a  class="btn btn-outline-dark" href="{% url 'signIn' %}" role="button">Login</a>
+                      {% endif %}
 
+                  
+                          
 
 
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
-from django.contrib.auth import authenticate,login
-
+from django.contrib.auth import authenticate,login,logout,get_user_model
+from django.urls import reverse
 # Create your views here.
 
 def signin(request):
@@ -16,6 +16,14 @@ def signin(request):
     return render(request,"account/signIn.html")
 
 def signup(request):
+    if request.method=="POST":
+        Name= request.POST.get("userName")
+        username= request.POST.get("userEmail")
+        userPassword= request.POST.get("userPassword")
+        getUserModel=get_user_model()
+        createUser = getUserModel.objects.create_user(username=username, password=userPassword, first_name=Name)
+        createUser.save()
+        return redirect(reverse('signIn'))
     return render(request,"account/signUp.html")
 
 def profile(request):
@@ -25,7 +33,8 @@ def settings(request):
     return render(request,"account/setting.html")
 
 def signout(request):
-    return HttpResponse("Signout")
+    logout(request)
+    return redirect('/')
 
 '''
 #User Login
