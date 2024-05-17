@@ -1,10 +1,26 @@
 {% extends "../base.html" %}
 
+{% block cssStyle %}
+<style>
+.table-no-border {
+	border-collapse: collapse;
+}
+.table-no-border th,
+.table-no-border td {
+	border: none;
+	padding-top: 3%;
 
+	
+}
+.infoTitle{
+	font-weight:bold;
+}
+</style>
+{% endblock cssStyle %}
 
 {% block body %}
 
-
+<style></style>
 <div class="container emp-profile">
 	<form method="post">
 		<div class="row">
@@ -27,13 +43,35 @@
 			</div>
 			<div class="col-md-8">
 				<div class="profile-head">
-							<h5>
-								Kshiti Ghelani
-							</h5>
-							<h6>
-								Web Developer and Designer
-							</h6>
-							<p class="proile-rating">RANKINGS : <span>8/10</span></p>
+					<h2>Profile</h2>
+					<hr>
+					<table class="table table-no-border">
+<tbody>
+    <tr>
+      <td class="infoTitle">Name</td>
+      <td>Abc</td>
+    </tr>
+	<tr>
+		<td class="infoTitle">Email</td>
+		<td>abc@gmail.com</td>
+	  </tr>
+	  <tr>
+		<td class="infoTitle">Username</td>
+		<td>@username</td>
+	  </tr>
+	  <tr>
+		<td class="infoTitle">Mobile Phone</td>
+		<td>923129392456</td>
+	  </tr>
+	  <tr>
+		<td class="infoTitle">Address</td>
+		<td>Pakistan</td>
+	  </tr>
+    <!-- Add more rows as needed -->
+  </tbody>
+</table>
+
+	
 
 				</div>
 			</div>
