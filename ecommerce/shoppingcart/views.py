@@ -28,7 +28,7 @@ def index(request):
 def productDescription(request,productDescriptionId):
     productInfo = Product.objects.get(productId = productDescriptionId)
     productInfo = {'productInformation':productInfo}
-    return render(request,"ecommerace/productDescription.html",productInfo)
+    return render(request,"ecommerce/productDescription.html",productInfo)
 
 
 def contact(request):
