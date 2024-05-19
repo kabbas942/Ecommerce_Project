@@ -80,15 +80,15 @@
 								<tbody>
 								<tr>
 								  <td class="infoTitle">Name</td>
-								  <td>Abc</td>
+								  <td>{{request.user.first_name}} {{request.user.last_name}}</td>
 								</tr>
 								<tr>
 									<td class="infoTitle">Email</td>
-									<td>abc@gmail.com</td>
+									<td>{{request.user.email}}</td>
 								  </tr>
 								  <tr>
 									<td class="infoTitle">Username</td>
-									<td>@username</td>
+									<td>{{request.user.username}}</td>
 								  </tr>
 								  <tr>
 									<td class="infoTitle">Mobile Phone</td>

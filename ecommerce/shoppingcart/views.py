@@ -166,5 +166,4 @@ def deleteCartProduct(request):
                 request.session.modified = True  
 
     return redirect("/ecommerce/cartView")
-    return redirect("/ecommerce/cartView")
 
