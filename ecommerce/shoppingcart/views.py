@@ -2,11 +2,16 @@ from django.shortcuts import render,HttpResponse,redirect
 from shoppingcart.models import Product,Category,Order,OrderDetail,Contact
 from django.contrib import sessions
 from django.db.models import Count
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+
 from datetime import datetime
 from django.contrib import messages
 
 
 #main page
+
 def index(request):
     #request.session.flush()
     allProductList= Product.objects.all()
@@ -64,7 +69,6 @@ def search(request):
             productParameter={'products':productList,'search': query}
         return render(request,"ecommerce/search.html",productParameter)
     return redirect("/ecommerce")
-
 
 def order(request):
     if request.method == 'POST':
@@ -160,4 +164,6 @@ def deleteCartProduct(request):
                     request.session['quantity']=request.session['quantity']-request.session['cart'][str(value)]
                 del request.session['cart'][value]  
                 request.session.modified = True  
+
     return redirect("/ecommerce/cartView")
+

@@ -1,0 +1,248 @@
+{% extends "../base.html" %}
+
+{% block cssStyle %}
+<style>
+.table-no-border {
+	border-collapse: collapse;
+}
+.table-no-border th,
+.table-no-border td {
+	border: none;
+	padding-top: 3%;
+
+	
+}
+.infoTitle{
+	font-weight:bold;
+}
+
+.nav-link{
+	color:black
+}
+.nav-link:hover{
+	color:black
+}
+.nav-pills .nav-item .active{
+	background:black
+}
+</style>
+{% endblock cssStyle %}
+
+{% block body %}
+
+<style></style>
+<div class="container emp-profile">
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="w-100">
+					<form method="post">
+					<img src="https://picsum.photos/200" style="width:100%;height:250px" alt=""/>
+					<p></p>
+					<input type="file" class="btn btn-dark" name="file"/>
+					</form>
+				</div>
+				<p></p>
+				<div>
+					<ul class="nav nav-pills flex-column" id="myTab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="home-tab" data-bs-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">
+								Home
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="orders-tab" data-bs-toggle="pill" href="#orders" role="tab" aria-controls="orders" aria-selected="false">
+								Orders
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="password-tab" data-bs-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
+								Change Password
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="profile-tab" data-bs-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+								Edit Profile
+							</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="profile-head">
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+							<h2>Profile</h2>
+							<hr>
+							<div class="container mt-2">
+							<table class="table table-no-border">
+								<tbody>
+								<tr>
+								  <td class="infoTitle">Name</td>
+								  <td>{{request.user.first_name}} {{request.user.last_name}}</td>
+								</tr>
+								<tr>
+									<td class="infoTitle">Email</td>
+									<td>{{request.user.email}}</td>
+								  </tr>
+								  <tr>
+									<td class="infoTitle">Username</td>
+									<td>{{request.user.username}}</td>
+								  </tr>
+								  <tr>
+									<td class="infoTitle">Mobile Phone</td>
+									<td>923129392456</td>
+								  </tr>
+								  <tr>
+									<td class="infoTitle">Address</td>
+									<td>Pakistan</td>
+								  </tr>
+								<!-- Add more rows as needed -->
+							  </tbody>
+							</table>
+						</div>
+						</div>
+						<div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+							<h2>Order</h2>
+							<hr>
+							<table class="table"><tr>
+								<td>Order Id : 123434</td>
+								<td>No. of item: 12</td>
+								<td>Total price : 32323</td>
+								<td>Date of order : 12-3-2023</td>
+								<td>Expected Date: 15-3-2024</td>
+								<td>Order Status:Pending</td>
+							</tr></table>
+							<table class="table table-no-border">
+								<thead>
+									<tr>
+									  <th>Sr.no</th>
+									  <th>Product</th>
+									  <th>Category</th>
+									  <th>Quantity</th>
+									  <th>Price</th>
+									  <th>P.Price x Qty </th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <td>John</td>
+									  <td>Doe</td>
+									  <td>john@example.com</td>
+									  <td>John</td>
+									  <td>Doe</td>
+									  <td>john@example.com</td>
+									</tr>
+									<tr>
+									  <td>Mary</td>
+									  <td>Moe</td>
+									  <td>mary@example.com</td>
+									  <td>John</td>
+									  <td>Doe</td>
+									  <td>john@example.com</td>
+									</tr>
+									<tr>
+									  <td>July</td>
+									  <td>Dooley</td>
+									  <td>july@example.com</td>
+									  <td>John</td>
+									  <td>Doe</td>
+									  <td>john@example.com</td>
+									</tr>
+								  </tbody>
+							</table>
+						</div>
+						<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+							<h2>Change Password</h2>
+							<hr>
+							<div class="container mt-2">
+								<form>
+									<table class="table table-no-border">
+										<tbody>
+											<tr>
+												<td><label for="currentPassword">Current Password</label></td>
+												<td><input type="password" class="form-control" id="currentPassword" name="currentPassword"></td>
+											</tr>
+											<tr>
+												<td><label for="newPassword">New Password</label></td>
+												<td><input type="password" class="form-control" id="newPassword" name="newPassword"></td>
+											</tr>
+											<tr>
+												<td><label for="confirmPassword">Confirm New Password</label></td>
+												<td><input type="password" class="form-control" id="confirmPassword" name="confirmPassword"></td>
+											</tr>
+										</tbody>
+									</table>
+									<button type="submit" class="btn btn-dark">Change Password</button>
+								</form>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+							<h2>Edit Profile</h2>
+							<hr>
+							<div class="container mt-2">
+								<form>
+									<table class="table table-no-border">
+										<tbody>
+											<tr>
+												<td><label for="firstName">First Name</label></td>
+												<td><input type="text" class="form-control" id="firstName" name="firstName"></td>
+											</tr>
+											<tr>
+												<td><label for="lastName">Last Name</label></td>
+												<td><input type="text" class="form-control" id="lastName" name="lastName"></td>
+											</tr>
+											<tr>
+												<td><label for="email">Email</label></td>
+												<td><input type="email" class="form-control" id="email" name="email"></td>
+											</tr>
+											<tr>
+												<td><label for="username">Username</label></td>
+												<td><input type="text" class="form-control" id="username" name="username"></td>
+											</tr>
+											<tr>
+												<td><label for="mobilePhone">Mobile Phone</label></td>
+												<td><input type="tel" class="form-control" id="mobilePhone" name="mobilePhone"></td>
+											</tr>
+											<tr>
+												<td><label for="address">Address</label></td>
+												<td><input type="text" class="form-control" id="address" name="address" rows="3"></input></td>
+											</tr>
+										</tbody>
+									</table>
+									<button type="submit" class="btn btn-dark">Update</button>
+								</form>
+							</div>
+						</div>
+					</div>
+
+
+
+	
+
+				</div>
+			</div>
+
+		</div>
+
+         
+</div>
+  <div class="py-5"></div>
+{% endblock body %} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

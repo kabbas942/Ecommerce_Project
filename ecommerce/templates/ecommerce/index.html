@@ -1,0 +1,69 @@
+    {% extends '../base.html' %}
+    
+    {% block body %}
+    <section class="jumbotron text-center">
+      <div class="container p-5">
+        <h1 class="text-center">BuzzShop</h1>
+
+        <h2 class="jumbotron-heading">Shop stylish bags, shoes, and clothes now!</h2>
+        <p class="lead text-muted">Step up your fashion game with our latest collection of bags, shoes, and clothes! Our versatile and trendy pieces are perfect for any occasion. Explore our carousel now and find your new go-to fashion favorites. Shop now and elevate your style!.</p>
+
+      </div>
+    </section>
+    <div class="album py-5 bg-light">
+      <div class="container">
+        {% if products %}
+        {% for category,values in products.items %}
+              
+        <h2>{{category}}</h2>
+        <hr>
+        <div class="row">
+
+
+{% for product in values %}
+  
+  
+
+<div class="col-md-3">
+
+  <div class="card mb-4 box-shadow" >
+    <a href="/ecommerce/productDescription/{{product.productId}}" class="text-dark text-decoration-none"><img class="card-img-top"  alt="Thumbnail [100%x225]" style="height: 200px; width: 100%; display: block;" src="/media/{{product.productImage}}" data-holder-rendered="true"></a>
+    <div class="card-body">
+      <p class="card-text">{{product.productName}}</p>
+      <p class="card-text"> $ {{product.productPrice}}.00</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <form method="POST" action="/ecommerce/cart/">
+            {% csrf_token %}
+            <input type="hidden" name="cartId" value="{{product.productId}}">
+            <button type="submit" class="btn btn-sm btn-success" name="submit">Add to Cart</button>
+          </form>
+          
+        </div>
+        <small class="text-muted">{{product.productCategory}}</small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+{% endfor %}
+
+
+
+        </div>
+
+
+        {% endfor %}
+        {% else %}
+        products not found
+        {% endif %}
+
+      </div>
+    </div>
+
+    {% endblock body %}
+    
