@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+
 # Create your models here.
 
 
@@ -25,7 +25,7 @@ class Product(models.Model):
     
 class Order(models.Model):
     orderId = models.AutoField(primary_key=True)
-    customerId = models.ForeignKey(User,on_delete=models.CASCADE,related_name="order",null=True,blank=True)
+    customerId = models.CharField(max_length=500)
     Address = models.CharField(max_length=500)
     MobileNumber = models.IntegerField(default="")
     totalPrice = models.IntegerField(default=0)
